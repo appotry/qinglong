@@ -2,12 +2,10 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { createRandomString } from './util';
 
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-
 const lastVersionFile = `http://qn.whyour.cn/version.ts?v=${Date.now()}`;
 
 const envFound = dotenv.config();
-const rootPath = process.cwd();
+const rootPath = process.env.QL_DIR as string;
 const dataPath = path.join(rootPath, 'data/');
 const samplePath = path.join(rootPath, 'sample/');
 const configPath = path.join(dataPath, 'config/');
@@ -15,6 +13,7 @@ const scriptPath = path.join(dataPath, 'scripts/');
 const bakPath = path.join(dataPath, 'bak/');
 const logPath = path.join(dataPath, 'log/');
 const dbPath = path.join(dataPath, 'db/');
+const uploadPath = path.join(dataPath, 'upload/');
 
 const envFile = path.join(configPath, 'env.sh');
 const confFile = path.join(configPath, 'config.sh');
@@ -58,6 +57,7 @@ export default {
   confFile,
   envFile,
   dbPath,
+  uploadPath,
   configPath,
   scriptPath,
   samplePath,
@@ -67,6 +67,7 @@ export default {
     'cookie.sh',
     'crontab.list',
     'env.sh',
+    'token.json',
   ],
   writePathList: [configPath, scriptPath],
   bakPath,
